@@ -1,44 +1,45 @@
-
-body {
-  margin: 0;
-  padding: 0;
+html, body {
+  height: 100%; /* Ensure the body takes full height */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Enable flexbox on body */
+  flex-direction: column; /* Stack children vertically */
   font-family: 'Roboto', sans-serif;
-  background-image: url('/static/images/space_bg.jpg');
+  background-image: url('/static/images/space_bg.jpg'); /* Updated to reflect the file structure */
   background-size: cover;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 130vh;
   color: white;
 }
 
+.signup-container {
+  display: flex; /* Enable flexbox for the signup container */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center the signup container vertically */
+  align-items: center; /* Center the signup container horizontally */
+  text-align: center; /* Center text inside the signup container */
+  margin: auto; /* Center the signup container within the available space */
+  width: 300px; /* Set a fixed width for the signup container */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  padding: 40px; /* Padding around the container */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow for the container */
+}
 
-.login-container, .signup-container {
-  background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
-  padding: 40px;
-  border-radius: 12px;
-  width: 300px;
+.app-footer {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  color: white;
   text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  width: 100%; /* Full width */
+  position: relative; /* Normal flow */
+  bottom: 0; /* Align to bottom */
 }
 
-h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-family: 'Orbitron', sans-serif;
-  color: #00bfff;
-}
-
+/* Additional styles for form elements */
 form {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-label {
-  font-size: 14px;
-  text-align: left;
+  flex-direction: column; /* Stack form elements vertically */
+  gap: 15px; /* Space between form elements */
+  width: 100%; /* Allow form to take full width */
 }
 
 input {
@@ -65,7 +66,6 @@ button:hover {
   transition: background-color 0.3s ease;
 }
 
-/* Link to sign up or login */
 p {
   margin-top: 15px;
   font-size: 14px;

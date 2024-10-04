@@ -98,7 +98,6 @@ nav {
     min-height: 100vh; /* Make sure it takes full viewport height */
 }
 
-/* Footer */
 .app-footer {
     margin-top: 50px;
     color: #ccc;
@@ -106,7 +105,6 @@ nav {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Footer Links */
 .app-footer a {
     color: white;
     text-decoration: underline;

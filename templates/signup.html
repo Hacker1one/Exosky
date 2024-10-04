@@ -5,21 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exosky - Sign Up</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background-image: url('{{ url_for('static', filename='images/space_bg.jpg') }}');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-    }
-  </style>
 </head>
 <body>
   <div class="signup-container">
@@ -41,8 +26,8 @@
     </form>
 
     <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
-
   </div>
+  
   <footer class="app-footer">
     <p>&copy; 2024 Exosky. All Rights Reserved.</p>
     <p>
@@ -52,6 +37,7 @@
         </a>
     </p>
   </footer>
+
   <script src="{{ url_for('static', filename='js/signup.js') }}"></script>
 </body>
 </html>
