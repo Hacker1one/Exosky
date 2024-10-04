@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exosky</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav>
+            <header class="app-header">
+                <h1>Exosky</h1>
+            </header>
+        </nav>
+        <div class="main-content">
+            <div class="search">
+                <input
+                    type="text"
+                    class="search-bar"
+                    placeholder="Search for an exoplanet..."
+                    id="searchInput"
+                />
+                <div id="error" style="display: none;"></div>
+                <ul class="exoplanet-list" id="exoplanetList" style="display: none;">
+                </ul>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <p>&copy; 2024 Exosky. All Rights Reserved.</p>
+            <p>
+                By The Eagles | &nbsp;
+                <a href="https://github.com/Hacker1one/Exosky" target="_blank" rel="noopener noreferrer">
+                    GitHub Repository
+                </a>
+            </p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>

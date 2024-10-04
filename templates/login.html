@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exosky - Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-image: url('{{ url_for('static', filename='images/space_bg.jpg') }}');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      position: relative; /* Allows footer to be positioned correctly */
+    }
+    .login-container {
+      text-align: center; /* Center align text */
+      background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a background for better readability */
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .app-footer {
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: absolute; /* Fix to the bottom of the container */
+      bottom: 0; /* Align to bottom */
+      left: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Exosky Login</h2>
+    <form id="login-form" action="/login" method="POST">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+  </div>
+
+  <footer class="app-footer">
+    <p>&copy; 2024 Exosky. All Rights Reserved.</p>
+    <p>
+        By The Eagles | &nbsp;
+        <a href="https://github.com/Hacker1one/Exosky" target="_blank" rel="noopener noreferrer">
+            GitHub Repository
+        </a>
+    </p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>

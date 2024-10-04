@@ -1,0 +1,81 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-image: url('/static/images/space_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130vh;
+  color: white;
+}
+
+
+.login-container, .signup-container {
+  background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
+  padding: 40px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-family: 'Orbitron', sans-serif;
+  color: #00bfff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-size: 14px;
+  text-align: left;
+}
+
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+}
+
+button {
+  padding: 10px;
+  background-color: #00bfff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #000;
+}
+
+button:hover {
+  background-color: #007acc;
+  transition: background-color 0.3s ease;
+}
+
+/* Link to sign up or login */
+p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
