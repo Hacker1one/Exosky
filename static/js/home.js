@@ -104,7 +104,17 @@ function filterExoplanets() {
 function handleSelect(exoplanet) {
     console.log('Selected exoplanet:', exoplanet);
     alert(`You selected ${exoplanet.name}`);
-    exoplanetList.style.display = 'none';
+
+    const visualizationPage = 'visualization'; // Change this to your actual visualization page URL
+    const params = new URLSearchParams({
+        name: exoplanet.name,
+        dec: exoplanet.DEC, // Assuming these properties exist in your exoplanet object
+        ra: exoplanet.RA,
+        host : exoplanet.Host,
+        distance: exoplanet.DIST
+    });
+    
+    window.location.href = `${visualizationPage}?${params.toString()}`;
 }
 
 // Event Listeners

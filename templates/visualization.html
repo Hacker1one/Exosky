@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanet Visualization</title>
+
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <h1 style="margin: 0;text-align: center;background-color: black;color: #ffffff;padding: 30px;">{{ name }}</h1>
+    <div id="visualization"></div>
+
+    <script>
+        // Fetch exoplanet data passed from Flask
+        const exoplanetData = {
+            name: "{{ name }}",
+            dec: "{{ dec }}",
+            ra: "{{ ra }}",
+            distance: "{{ distance }}",
+            host: "{{ host }}"
+        };
+
+       const starData = JSON.parse(`{{ star_data | safe }}`);
+
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create starfield
+        const starGeometry = new THREE.BufferGeometry();
+        const starMaterial = new THREE.PointsMaterial({
+            color: 0xFFFFFF,
+            size: 0.05,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            sizeAttenuation: true
+        });
+
+
+
+
+
+        // Function to create stars from data with validation
+        function createStars(data) {
+            const starVertices = [];
+            const starColors = [];
+            data.forEach(star => {
+                const ra_rel = parseFloat(star['RA_rel']);
+                const dec_rel = parseFloat(star['Dec_rel']);
+                const dist_rel = parseFloat(star['d_rel']);
+
+                // Check if RA_rel and Dec_rel are valid numbers
+                if (!isNaN(ra_rel) && !isNaN(dec_rel)) {
+                    // Convert RA_rel and Dec_rel from degrees to radians
+                    const raRad = ra_rel; // Assuming these values are already in radians
+                    const decRad = dec_rel;
+
+                    // Convert spherical coordinates to Cartesian coordinates
+                    const x = 4 * dist_rel * Math.cos(decRad) * Math.cos(raRad);
+                    const y = 4 * dist_rel * Math.cos(decRad) * Math.sin(raRad);
+                    const z = 4 * dist_rel * Math.sin(decRad);
+
+                    starVertices.push(x, y, z);
+
+                    // Add random color variation
+                    starColors.push(Math.random(), Math.random(), Math.random());
+                }
+            });
+
+            // Ensure there are valid points before assigning them
+            if (starVertices.length > 0) {
+                starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+                starGeometry.setAttribute('color', new THREE.Float32BufferAttribute(starColors, 3));
+                starMaterial.vertexColors = true;
+                const stars = new THREE.Points(starGeometry, starMaterial);
+                scene.add(stars);
+            } else {
+                console.error('No valid star coordinates found.');
+            }
+        }
+
+        // Create stars using the data from Flask
+        createStars(starData);
+
+        // Set camera slightly away from center to see the stars
+        camera.position.set(0, 0, 5); // Move 5 units out along the z-axis
+
+        // Add OrbitControls for rotation and zooming
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.rotateSpeed = 0.5;
+        controls.zoomSpeed = 0.5;
+        controls.maxDistance = 100;
+        controls.minDistance = 1; // Allow zoom in and out, but not too close or far
+        controls.enablePan = false; // Disable panning, so only rotation and zooming are allowed
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+
+</body>
+</html>

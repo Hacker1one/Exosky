@@ -24,7 +24,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
       if (response.ok) {
           alert(result.message); 
           setTimeout(() => {
-            window.location.href = '/home';}, 1000);
+            window.location.href = '/home';}, 400);
       } else {
           alert(result.error);  
       }

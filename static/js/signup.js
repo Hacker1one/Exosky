@@ -27,7 +27,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
       if (response.ok) {
           alert(result.message); 
           setTimeout(() => {
-            window.location.href = '/login';}, 1000);
+            window.location.href = '/login';}, 400);
       } else {
           alert(result.error); 
       }
